@@ -33,4 +33,5 @@ func (r *UserRepository) Login(user models.User) (u models.User, err error) {
 	if err != nil {
 		u = models.User{}
 	}
+	return
 }

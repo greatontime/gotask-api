@@ -14,7 +14,7 @@ func GetSession() *mgo.Session {
 		var err error
 		session, err = mgo.DialWithInfo(&mgo.DialInfo{
 			Addrs:    []string{AppConfig.MongoDBHost},
-			UserName: AppConfig.DBUser,
+			Username: AppConfig.DBUser,
 			Password: AppConfig.DBPwd,
 			Timeout:  60 * time.Second,
 		})
@@ -36,7 +36,7 @@ func createDbSession() {
 		log.Fatalf("[createDBSession]: %s\n", err)
 	}
 }
-func addIndex() {
+func addIndexes() {
 	var err error
 	userIndex := mgo.Index{
 		Key:        []string{"email"},

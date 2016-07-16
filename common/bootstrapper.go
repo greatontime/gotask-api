@@ -4,6 +4,6 @@ func StartUp() {
 	initConfig()
 	initKeys()
 	setLogLevel(Level(AppConfig.LogLevel))
-	createDBSession()
+	createDbSession()
 	addIndexes()
 }

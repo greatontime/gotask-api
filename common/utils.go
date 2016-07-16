@@ -23,7 +23,7 @@ type (
 )
 
 func DisplayAppError(w http.ResponseWriter, handlerError error, message string, code int) {
-	errOjb := appError{
+	errObj := appError{
 		Error:      handlerError.Error(),
 		Message:    message,
 		HttpStatus: code,
