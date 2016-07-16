@@ -5,7 +5,7 @@ import (
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 
-	"github.com/greatontime/taskmanager/models"
+	"github.com/greatontime/gotask-api/models"
 )
 
 type UserRepository struct {

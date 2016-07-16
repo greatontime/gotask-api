@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/greatontime/taskmanager/common"
-	"github.com/greatontime/taskmanager/data"
-	"github.com/greatontime/taskmanager/models"
+	"github.com/greatontime/gotask-api/common"
+	"github.com/greatontime/gotask-api/data"
+	"github.com/greatontime/gotask-api/models"
 )
 
 func Register(w http.ResponseWriter, r *http.Request) {

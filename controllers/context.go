@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/greatontime/taskmanager/common"
+	"github.com/greatontime/gotask-api/common"
 	"gopkg.in/mgo.v2"
 )
 

@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/greatontime/taskmanager/models"
+	"github.com/greatontime/gotask-api/models"
 )
 
 type (

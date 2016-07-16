@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	"github.com/codegangsta/negroni"
-	"github.com/greatontime/taskmanager/common"
-	"github.com/greatontime/taskmanager/routers"
+	"github.com/greatontime/gotask-api/common"
+	"github.com/greatontime/gotask-api/routers"
 )
 
 func main() {
