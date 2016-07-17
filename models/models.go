@@ -6,6 +6,7 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
+// datamodels
 type (
 	User struct {
 		Id           bson.ObjectId `bson:"_id,omitempty" json:"id"`
