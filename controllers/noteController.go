@@ -24,7 +24,7 @@ func CreateNote(w http.ResponseWriter, r *http.Request) {
 	}
 	noteModel := dataResource.Data
 	note := &models.TaskNote{
-		TaskId:      bson.ObjectIdHex(),
+		TaskId:      bson.ObjectIdHex(noteModel.TaskId),
 		Description: noteModel.Description,
 	}
 	context := NewContext()
