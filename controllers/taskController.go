@@ -71,3 +71,111 @@ func GetTasks(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(j)
 }
+func GetTaskByID(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id := vars["id"]
+	context := NewContext()
+
+	defer context.Close()
+	col := context.DbCollection("tasks")
+	repo := &data.TaskRepository{C: col}
+	task, err := repo.GetById(id)
+	if err != nil {
+		if err == mgo.ErrNotFound {
+			w.WriteHeader(http.StatusNoContent)
+		} else {
+			common.DisplayAppError(
+				w,
+				err,
+				"An unexpected error has occurred",
+				500,
+			)
+		}
+		return
+	}
+	j, err := json.Marshal(task)
+	if err != nil {
+		common.DisplayAppError(
+			w,
+			err,
+			"An unexpected error has occurred",
+			500,
+		)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	w.Write(j)
+}
+func GetTasksByUser(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	user := vars["id"]
+	context := NewContext()
+	defer context.Close()
+	col := context.DbCollection("tasks")
+	repo := &data.TaskRepository{C: col}
+	tasks := repo.GetByUser(user)
+	j, err := json.Marshal(TaskResource{Data: tasks})
+	if err != nil {
+		common.DisplayAppError(
+			w,
+			err,
+			"An unexpected error has occurred",
+			500,
+		)
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(j)
+}
+func UpdateTask(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id := bson.ObjectIdHex(vars["id"])
+	var dataResource TaskResource
+	err := json.NewDecoder(r.Body).Decode(&dataResource)
+	if err != nil {
+		common.DisplayAppError(
+			w,
+			err,
+			"Invalid Task Data",
+			500,
+		)
+		return
+	}
+	task := &dataResource.Data
+	task.Id = id
+	contenxt := NewContext()
+	defer context.Close()
+	col := context.DbCollection("tasks")
+	repo := &data.TaskRepository{C: col}
+	if err := repo.Update(task); err != nil {
+		common.DisplayAppError(
+			w,
+			err,
+			"An unexpected error has occurred",
+			500,
+		)
+		return
+	}
+	w.WriteHeader(http.StatusNoContent)
+}
+func DeleteTask(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id := vars["id"]
+	context := NewContext()
+	defer context.Close()
+	col := context.DbCollection("tasks")
+	repo := &data.TaskRepository{C: col}
+	err := repo.Delete(id)
+	if err != nil {
+		common.DisplayAppError(
+			w,
+			err,
+			"An unexpected error has occurred",
+			500,
+		)
+		return
+	}
+	w.WriteHeader(http.StatusNoContent)
+}
