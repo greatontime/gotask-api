@@ -15,7 +15,7 @@ import (
 )
 
 func CreateNote(w http.ResponseWriter, r *http.Request) {
-	var dataSource NoteResource
+	var dataResource NoteResource
 
 	err := json.NewDecoder(r.Body).Decode(&dataResource)
 	if err != nil {

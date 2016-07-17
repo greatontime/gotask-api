@@ -57,7 +57,7 @@ func GetTasks(w http.ResponseWriter, r *http.Request) {
 	col := context.DbCollection("tasks")
 	repo := &data.TaskRepository{C: col}
 	tasks := repo.GetAll()
-	j, err := json.Marshal(TaskResource{Data: tasks})
+	j, err := json.Marshal(TasksResource{Data: tasks})
 	if err != nil {
 		common.DisplayAppError(
 			w,
