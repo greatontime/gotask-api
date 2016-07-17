@@ -50,7 +50,7 @@ func GetNotesByTask(w http.ResponseWriter, r *http.Request) {
 	col := context.DbCollection("notes")
 	repo := &data.NoteRepository{C: col}
 	notes := repo.GetByTask(id)
-	j, err := json.Marshal(NoteResource{Data: notes})
+	j, err := json.Marshal(NotesResource{Data: notes})
 	if err != nil {
 		common.DisplayAppError(w, err, "An unexpected error has occurred", 500)
 		return
@@ -65,7 +65,7 @@ func GetNotes(w http.ResponseWriter, r *http.Request) {
 	col := context.DbCollection("notes")
 	repo := &data.NoteRepository{C: col}
 	notes := repo.GetAll()
-	j, err := json.Marshal(NoteResource{Data: notes})
+	j, err := json.Marshal(NotesResource{Data: notes})
 	if err != nil {
 		common.DisplayAppError(w, err, "An unexpected error has occurred", 500)
 		return

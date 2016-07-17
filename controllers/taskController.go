@@ -115,7 +115,7 @@ func GetTasksByUser(w http.ResponseWriter, r *http.Request) {
 	col := context.DbCollection("tasks")
 	repo := &data.TaskRepository{C: col}
 	tasks := repo.GetByUser(user)
-	j, err := json.Marshal(TaskResource{Data: tasks})
+	j, err := json.Marshal(TasksResource{Data: tasks})
 	if err != nil {
 		common.DisplayAppError(
 			w,
@@ -145,7 +145,7 @@ func UpdateTask(w http.ResponseWriter, r *http.Request) {
 	}
 	task := &dataResource.Data
 	task.Id = id
-	contenxt := NewContext()
+	context := NewContext()
 	defer context.Close()
 	col := context.DbCollection("tasks")
 	repo := &data.TaskRepository{C: col}

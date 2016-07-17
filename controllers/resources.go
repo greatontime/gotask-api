@@ -35,7 +35,7 @@ type (
 		Token string      `json:"token"`
 	}
 	NoteModel struct {
-		TaksId      string `json:"taksid"`
+		TaskId      string `json:"taksid"`
 		Description string `json:"description"`
 	}
 )

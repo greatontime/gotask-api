@@ -28,8 +28,9 @@ type (
 	}
 	TaskNote struct {
 		Id          bson.ObjectId `bson:"_id,omitempty" json:"id"`
-		TaskId      bson.ObjectId `json:"taskid"`
+		TaskId      bson.ObjectId `bson:"taskid,omitempty" json:"taskid"`
 		Description string        `json:"description"`
 		CreatedOn   time.Time     `json:"createdon,omitempty"`
+		tid         string        `json:"tid"`
 	}
 )
